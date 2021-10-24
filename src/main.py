@@ -7,6 +7,7 @@ import unicurses as uc
 from cogs.core import *
 from cogs.cartography import *
 
+
 def insert_cells_from_list(cell_list: List[Cell]):
     uc.init_pair(1, uc.COLOR_CYAN, uc.use_default_colors())
     uc.attron(uc.COLOR_PAIR(1))
@@ -30,11 +31,15 @@ def make_rectangle(x, y, width, height):
     insert_cells_from_list(left)
     insert_cells_from_list(right)
 
+def update():
+    pass
+
 def main():
     stdscr = uc.initscr()
     uc.curs_set(0)
     uc.start_color()
     while True:
+        update(stdscr)
         key = uc.getch()
         if key == 27:
             uc.nodelay(stdscr, True)
@@ -42,6 +47,11 @@ def main():
             if n == -1:
                 break
             uc.nodelay(stdscr, False)
+        """ if key == ord("s"):
+            y, x = uc.getmaxyx(stdscr)
+            uc.mvaddstr(10, 0, f"({x}, {y})")
+            uc.move(0,0) """
+        uc.refresh()
     uc.endwin()
     return 0
 

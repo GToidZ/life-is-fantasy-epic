@@ -1,6 +1,7 @@
 from typing import List
 from cogs.core import DObject
 
+
 # Abstract cell classess
 class Cell:
     """
